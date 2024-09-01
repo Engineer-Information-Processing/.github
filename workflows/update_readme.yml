@@ -2,7 +2,7 @@ name: Update README with D-Day
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # 매일 자정에 실행
+    - cron: "7 2 * * *"  # 매일 자정에 실행
   workflow_dispatch:  # 수동 실행을 위한 옵션
 
 jobs:
