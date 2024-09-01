@@ -19,7 +19,7 @@ jobs:
 
       - name: Run D-Day script
         run: |
-          python3 update_readme.py
+          python3 scripts/update_readme.py
 
       - name: Commit changes
         run: |
