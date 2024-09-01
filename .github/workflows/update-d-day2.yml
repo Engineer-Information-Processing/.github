@@ -1,0 +1,50 @@
+name: Update D-Day Countdown
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # 매일 자정에 실행
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Update D-Day
+        run: |
+          import datetime
+
+          # 디데이 날짜
+          d_day = datetime.datetime(2024, 12, 31)
+          today = datetime.datetime.now()
+          
+          # 남은 일수 계산
+          delta = d_day - today
+          days_left = delta.days
+          
+          # README.md 파일 업데이트
+          readme_path = '.github/profile/README.md'
+          
+          with open(readme_path, 'r') as file:
+              content = file.read()
+
+          new_content = content.replace('D-Day: [자동 업데이트 필요]', f'D-Day: {days_left} days remaining')
+
+          with open(readme_path, 'w') as file:
+              file.write(new_content)
+
+      - name: Commit and push changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: 'GitHub Actions'
+          author_email: 'actions@github.com'
+          message: 'Update D-Day countdown'
+          add: '.github/profile/README.md'
