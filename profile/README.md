@@ -1,4 +1,3 @@
-# Engineer-Information-Processing
+## D-Day Countdown
 
-## D-Day
-현재 목표일까지 남은 날짜는 **{D-Day}일**입니다.
+D-Day: [자동 업데이트 필요]
